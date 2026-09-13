@@ -288,7 +288,7 @@ Available scripts (`package.json`): `dev` · `build` (`tsc -b && vite build`) ·
 
 This is a static Vite build (`dist/`), deployable to **Vercel**, **Netlify** or **GitHub Pages** (build: `npm run build`, output: `dist/`).
 
-> Note: this repository currently contains **no CI/CD workflow** (no `.github/` directory) and `vite.config.ts` sets no custom `base` path. GitHub Pages project-site deployment would additionally need a `base` of `/MUCHAKARLA-HEMANTH-KUMAR-PORTPOLIO/` plus a Pages workflow — not yet configured. Vercel/Netlify work with zero changes.
+> **GitHub Pages is configured:** pushing to `main` triggers `.github/workflows/deploy.yml`, which builds the site and deploys `dist/` via the official Pages actions. `vite.config.ts` sets `base: '/MUCHAKARLA-HEMANTH-KUMAR-PORTPOLIO/'` so assets resolve under the project subpath. In the repository settings, Pages **Source must be “GitHub Actions”**. Live at the portfolio URL at the top of this README. Vercel/Netlify need zero changes.
 
 ---
 
