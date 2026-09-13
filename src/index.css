@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --bg: #04070f;
+  --bg-soft: #070d1d;
+  --panel: rgba(13, 22, 43, 0.55);
+  --line: rgba(120, 170, 255, 0.16);
+  --text: #dbe7ff;
+  --muted: #8ea0c2;
+  --electric: #2f7bff;
+  --cyan: #22d3ee;
+  --violet: #8b5cf6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(47, 123, 255, 0.45);
+  color: #fff;
+}
+
+/* ---------- scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #04070f;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #2f7bff, #22d3ee);
+  border-radius: 8px;
+}
+
+/* ---------- utility layers ---------- */
+@layer components {
+  .font-display {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+
+  .glass {
+    background: var(--panel);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--line);
+  }
+
+  .holo-border {
+    position: relative;
+    border: 1px solid transparent;
+    background:
+      linear-gradient(rgba(10, 18, 38, 0.72), rgba(10, 18, 38, 0.72)) padding-box,
+      linear-gradient(135deg, rgba(47, 123, 255, 0.55), rgba(34, 211, 238, 0.35), rgba(139, 92, 246, 0.5)) border-box;
+  }
+
+  .section-shell {
+    @apply relative mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply font-mono text-[11px] sm:text-xs tracking-[0.35em] uppercase;
+    color: var(--cyan);
+  }
+
+  .glow-btn {
+    box-shadow:
+      0 0 24px rgba(47, 123, 255, 0.35),
+      inset 0 0 18px rgba(34, 211, 238, 0.08);
+  }
+
+  .text-gradient {
+    background: linear-gradient(92deg, #7db4ff 0%, #22d3ee 45%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(90, 140, 255, 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(90, 140, 255, 0.055) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 30%, transparent 75%);
+  }
+}
+
+/* animated border sweep for project cards */
+@keyframes border-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-holo {
+  background: linear-gradient(120deg, rgba(47,123,255,.5), rgba(34,211,238,.28), rgba(139,92,246,.5), rgba(47,123,255,.5));
+  background-size: 300% 300%;
+  animation: border-flow 7s ease infinite;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 12px rgba(52, 255, 170, 0.9);
+  }
+  50% {
+    opacity: 0.55;
+    box-shadow: 0 0 3px rgba(52, 255, 170, 0.4);
+  }
+}
+
+.status-dot {
+  animation: pulse-dot 2.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-dot,
+  .animated-holo {
+    animation: none;
+  }
+}
+
+/* visible focus for keyboard users */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #22d3ee;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: #0a1226;
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid #22d3ee;
+  border-radius: 0 0 8px 0;
+}
+.skip-link:focus {
+  left: 0;
+}
